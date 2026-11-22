@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#fff8ed" />
+    <meta name="description" content="한남게이 손님 회원가입" />
+    <title>한남게이 | 회원가입</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="signup-page">
+      <section class="signup-panel" aria-labelledby="signup-title">
+        <header class="signup-header">
+          <h1 id="signup-title">한남게이</h1>
+          <p>마음에 드는 식당을 찾고,<br />사장님과 소통해 보세요.</p>
+        </header>
+
+        <form id="signup-form" novalidate>
+          <div class="form-field">
+            <label class="sr-only" for="contact">휴대폰 번호 또는 이메일 주소</label>
+            <input
+              id="contact"
+              name="contact"
+              type="text"
+              inputmode="email"
+              autocomplete="email"
+              placeholder="휴대폰 번호 또는 이메일 주소"
+              aria-describedby="contact-error"
+            />
+            <p class="field-error" id="contact-error" aria-live="polite"></p>
+          </div>
+
+          <div class="form-field">
+            <label class="sr-only" for="name">성명</label>
+            <input
+              id="name"
+              name="name"
+              type="text"
+              autocomplete="name"
+              placeholder="성명"
+              aria-describedby="name-error"
+            />
+            <p class="field-error" id="name-error" aria-live="polite"></p>
+          </div>
+
+          <div class="form-field">
+            <label class="sr-only" for="username">사용자 이름</label>
+            <input
+              id="username"
+              name="username"
+              type="text"
+              autocapitalize="none"
+              autocomplete="username"
+              placeholder="사용자 이름"
+              aria-describedby="username-error"
+            />
+            <p class="field-error" id="username-error" aria-live="polite"></p>
+          </div>
+
+          <div class="form-field">
+            <label class="sr-only" for="password">비밀번호</label>
+            <input
+              id="password"
+              name="password"
+              type="password"
+              autocomplete="new-password"
+              placeholder="비밀번호"
+              aria-describedby="password-error"
+            />
+            <p class="field-error" id="password-error" aria-live="polite"></p>
+          </div>
+
+          <button type="submit">가입</button>
+        </form>
+      </section>
+    </main>
+    <script src="./app.js"></script>
+  </body>
+</html>
