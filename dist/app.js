@@ -126,7 +126,11 @@ async function submitSignup() {
       body: JSON.stringify({ email: signupData.email, nickname: signupData.nickname, password: signupData.password, consents: consentRecords() }),
     });
     if (!response.ok) throw new Error("signup_failed");
-    window.location.assign("./");
+    const result = await response.json();
+    if (typeof result.redirectUrl !== "string" || !result.redirectUrl.startsWith("/")) {
+      throw new Error("missing_signup_redirect");
+    }
+    window.location.assign(result.redirectUrl);
   } catch {
     termsError.textContent = "가입을 완료하지 못했습니다. 잠시 후 다시 시도해 주세요.";
     updateConsentState();
