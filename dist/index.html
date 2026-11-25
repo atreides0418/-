@@ -8,79 +8,84 @@
     <title>한남게이 | 회원가입</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Hahmlet:wght@700;800&family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Hahmlet:wght@700;800&family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
-    <main class="signup-page">
-      <section class="signup-panel" aria-labelledby="signup-title">
+    <!-- data-signup-endpoint는 실제 HTTPS 가입 API가 준비된 뒤에만 설정합니다. -->
+    <main class="signup-page" data-signup-endpoint="">
+      <section class="signup-panel" id="account-step" aria-labelledby="signup-title">
         <header class="signup-header">
           <h1 id="signup-title">한남게이</h1>
           <p>마음에 드는 식당을 찾고,<br />사장님과 소통해 보세요.</p>
         </header>
-
         <form id="signup-form" novalidate>
           <div class="form-field">
-            <label class="sr-only" for="contact">휴대폰 번호 또는 이메일 주소</label>
-            <input
-              id="contact"
-              name="contact"
-              type="text"
-              inputmode="email"
-              autocomplete="email"
-              placeholder="휴대폰 번호 또는 이메일 주소"
-              aria-describedby="contact-error"
-            />
-            <p class="field-error" id="contact-error" aria-live="polite"></p>
+            <label class="sr-only" for="email">이메일 주소</label>
+            <input id="email" name="email" type="email" inputmode="email" autocomplete="email" placeholder="이메일 주소" aria-describedby="email-error" />
+            <p class="field-error" id="email-error" aria-live="polite"></p>
           </div>
-
           <div class="form-field">
-            <label class="sr-only" for="name">성명</label>
-            <input
-              id="name"
-              name="name"
-              type="text"
-              autocomplete="name"
-              placeholder="성명"
-              aria-describedby="name-error"
-            />
-            <p class="field-error" id="name-error" aria-live="polite"></p>
+            <label class="sr-only" for="nickname">닉네임</label>
+            <input id="nickname" name="nickname" type="text" autocapitalize="none" autocomplete="username" maxlength="20" placeholder="닉네임" aria-describedby="nickname-error" />
+            <p class="field-error" id="nickname-error" aria-live="polite"></p>
           </div>
-
-          <div class="form-field">
-            <label class="sr-only" for="username">사용자 이름</label>
-            <input
-              id="username"
-              name="username"
-              type="text"
-              autocapitalize="none"
-              autocomplete="username"
-              placeholder="사용자 이름"
-              aria-describedby="username-error"
-            />
-            <p class="field-error" id="username-error" aria-live="polite"></p>
-          </div>
-
           <div class="form-field">
             <label class="sr-only" for="password">비밀번호</label>
-            <input
-              id="password"
-              name="password"
-              type="password"
-              autocomplete="new-password"
-              placeholder="비밀번호"
-              aria-describedby="password-error"
-            />
+            <input id="password" name="password" type="password" autocomplete="new-password" placeholder="비밀번호 (8자 이상)" aria-describedby="password-error" />
             <p class="field-error" id="password-error" aria-live="polite"></p>
           </div>
-
-          <button type="submit">가입</button>
+          <button type="submit">다음</button>
         </form>
       </section>
+
+      <section class="terms-panel" id="terms-step" aria-labelledby="terms-title" hidden>
+        <header class="step-header">
+          <button class="back-button" id="back-to-account" type="button" aria-label="회원정보 입력으로 돌아가기">←</button>
+          <strong>회원가입</strong>
+          <span aria-hidden="true"></span>
+        </header>
+        <div class="terms-intro">
+          <h1 id="terms-title">서비스 이용을 위한<br />약관 동의</h1>
+          <p>한남게이 서비스를 시작하기 위해<br />아래 내용을 확인해 주세요.</p>
+        </div>
+        <section class="consent-card" aria-label="약관 동의 항목">
+          <label class="consent-all">
+            <input id="agree-all" type="checkbox" />
+            <span>전체 동의하기</span>
+          </label>
+          <div class="consent-list">
+            <div class="consent-row">
+              <label>
+                <input class="consent-item" id="agree-terms" type="checkbox" data-required="true" />
+                <span><b>[필수]</b> 서비스 이용약관 동의</span>
+              </label>
+              <button class="document-button" type="button" data-document="terms" aria-label="서비스 이용약관 자세히 보기">›</button>
+            </div>
+            <div class="consent-row">
+              <label>
+                <input class="consent-item" id="agree-privacy-collection" type="checkbox" data-required="true" />
+                <span><b>[필수]</b> 개인정보 수집·이용 동의</span>
+              </label>
+              <button class="document-button" type="button" data-document="collection" aria-label="개인정보 수집·이용 동의 자세히 보기">›</button>
+            </div>
+          </div>
+        </section>
+        <p class="privacy-link"><a href="./privacy.html" target="_blank" rel="noopener">개인정보 처리방침 보기</a></p>
+        <p class="terms-notice">선택적 마케팅 기능은 현재 제공하지 않아 동의 항목에 포함하지 않았습니다.</p>
+        <p class="terms-error" id="terms-error" role="alert" aria-live="polite"></p>
+        <button class="complete-button" id="complete-signup" type="button" disabled>동의하고 가입하기</button>
+      </section>
     </main>
+
+    <dialog id="document-dialog" aria-labelledby="document-title">
+      <div class="dialog-header">
+        <h2 id="document-title"></h2>
+        <button id="close-dialog" type="button" aria-label="약관 내용 닫기">×</button>
+      </div>
+      <div id="document-content" class="document-content"></div>
+      <a id="document-link" class="document-link" target="_blank" rel="noopener">전체 문서 보기</a>
+    </dialog>
     <script src="./app.js"></script>
   </body>
 </html>
